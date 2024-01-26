@@ -1,0 +1,6 @@
+spring.kafka:
+  one.bootstrap-servers:
+    - 10.144.9.17:9092
+    - 10.144.9.30:9092
+    - 10.144.9.15:9092
+  group-id: group-prod

@@ -1,0 +1,33 @@
+spring:
+  messages.encoding: UTF-8
+  servlet.multipart:
+    enabled: true
+    max-file-size: 2048MB
+    max-request-size: 2048MB
+  main.allow-circular-references: true
+  main.allow-bean-definition-overriding: true
+
+management.endpoints.web.exposure.include: "*"
+
+server.servlet:
+  context-path: /${spring.application.name}
+
+logging:
+#  file.name: hhjw.log
+#  logback.rollingpolicy:
+#    max-file-size: 100MB
+#    clean-history-on-start: true
+#    max-history: 7
+#  #  level:
+#  #    com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver: WARN
+#  #    com.datastax.oss.driver.internal.core.cql.CqlRequestHandler: ERROR
+#  pattern:
+#    console: "%clr(<${spring.application.name}.${spring.cloud.client.ip-address}>) [%d{yyyy-MM-dd HH:mm:ss.SSS}] %-5p \\(%F:%L\\) - %trace_id%m%n"
+#    file: "<${spring.application.name}.${spring.cloud.client.ip-address}> [%d{yyyy-MM-dd HH:mm:ss.SSS}] %-5p \\(%F:%L\\) - %trace_id%m%n"
+  config: classpath:spring-logback.xml
+
+springdoc:
+  api-docs.enabled: true
+  swagger-ui.enabled: true
+
+profile-active: @profileActive@

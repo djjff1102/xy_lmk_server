@@ -1,0 +1,8 @@
+spring.elasticsearch:
+  uris:
+    - http://elasticsearch.quesoar.com:20000
+  connection-timeout: 5s
+  socket-timeout: 60s
+  username: elastic
+  password: tjzkwg@123.com
+

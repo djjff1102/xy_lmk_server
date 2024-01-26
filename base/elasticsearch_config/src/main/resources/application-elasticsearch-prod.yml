@@ -1,0 +1,6 @@
+spring.elasticsearch:
+  uris:
+    - http://localhost:20000
+  connection-timeout: 5s
+  socket-timeout: 60s
+

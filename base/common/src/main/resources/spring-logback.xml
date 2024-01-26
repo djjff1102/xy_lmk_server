@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter"/>
+	<property name="console_log_pattern"
+	          value="%clr(%app_info)[%d{yyyy-MM-dd HH:mm:ss.SSS}] %-5p \\(%F:%L\\) - [%X{tid}]%m%n"/>
+	<property name="log_pattern"
+	          value="%app_info[%d{yyyy-MM-dd HH:mm:ss.SSS}] %-5p \\(%F:%L\\) - [%X{tid}]%m%n"/>
+
+	<appender name="grpc" class="org.apache.skywalking.apm.toolkit.log.logback.v1.x.log.GRPCLogClientAppender">
+		<encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+			<layout class="org.apache.skywalking.apm.toolkit.log.logback.v1.x.mdc.TraceIdMDCPatternLogbackLayout">
+				<pattern>${log_pattern}</pattern>
+			</layout>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<!-- 过滤的级别 -->
+			<level>ERROR</level>
+			<!-- 匹配时的操作：接收（记录） -->
+			<onMatch>ACCEPT</onMatch>
+			<!-- 不匹配时的操作：拒绝（不记录） -->
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+			<layout class="org.apache.skywalking.apm.toolkit.log.logback.v1.x.TraceIdPatternLogbackLayout">
+				<pattern>${console_log_pattern}</pattern>
+			</layout>
+		</encoder>
+	</appender>
+
+	<appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>tdxy.log</file>
+		<!-- 循环政策：基于时间创建日志文件 -->
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<!-- 日志文件名格式 -->
+			<fileNamePattern>tdxy-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
+			<!-- 日志最大的历史 7天 -->
+			<maxHistory>7</maxHistory>
+			<!--单个日志文件的最大体积-->
+			<maxFileSize>100MB</maxFileSize>
+			<!--			&lt;!&ndash;控制所有归档日志文件的总大小&ndash;&gt;-->
+			<!--			<totalSizeCap>200MB</totalSizeCap>-->
+			<!--是否在应用启动的时候删除历史日志-->
+			<cleanHistoryOnStart>true</cleanHistoryOnStart>
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+			<layout class="org.apache.skywalking.apm.toolkit.log.logback.v1.x.TraceIdPatternLogbackLayout">
+				<pattern>${log_pattern}</pattern>
+			</layout>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<!-- 过滤的级别 -->
+			<level>INFO</level>
+			<!-- 匹配时的操作：接收（记录） -->
+			<onMatch>ACCEPT</onMatch>
+			<!-- 不匹配时的操作：拒绝（不记录） -->
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+
+	<root level="INFO">
+		<appender-ref ref="grpc"/>
+		<appender-ref ref="file"/>
+		<appender-ref ref="console"/>
+	</root>
+
+</configuration>

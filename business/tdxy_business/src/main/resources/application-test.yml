@@ -1,0 +1,3 @@
+url:
+  white-list: /tdxy/auth/login,/tdxy/auth/logout,/tdxy/dock/network/data,/tdxy/dock/network/execute,/tdxy/dock/app/execute,/tdxy/dock/app/execute/test
+  black-list: /tdxy/actuator/*,/tdxy/swagger-ui/*

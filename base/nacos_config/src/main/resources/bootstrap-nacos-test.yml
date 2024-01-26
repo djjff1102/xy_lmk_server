@@ -1,0 +1,13 @@
+spring.cloud:
+  nacos:
+    discovery:
+      server-addr: nacos-0.nacos.common-component.svc.cluster.local:8848,nacos-1.nacos.common-component.svc.cluster.local:8848,nacos-2.nacos.common-component.svc.cluster.local:8848
+      namespace: hhjw
+      enabled: true
+    config:
+      server-addr: nacos-0.nacos.common-component.svc.cluster.local:8848,nacos-1.nacos.common-component.svc.cluster.local:8848,nacos-2.nacos.common-component.svc.cluster.local:8848
+      namespace: hhjw
+      file-extension: yml
+  loadbalancer:
+    cache.enabled: false
+    nacos.enabled: true

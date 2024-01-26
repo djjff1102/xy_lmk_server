@@ -1,0 +1,13 @@
+spring.cloud:
+  nacos:
+    discovery:
+      server-addr: 116.63.232.192:8848
+      namespace: hhjw_dev
+      enabled: true
+    config:
+      server-addr: 116.63.232.192:8848
+      namespace: hhjw_dev
+      file-extension: yml
+  loadbalancer:
+    cache.enabled: false
+    nacos.enabled: true

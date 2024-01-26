@@ -1,0 +1,3 @@
+url:
+  white-list: /tdxy/auth/login,/tdxy/auth/logout
+  black-list: /tdxy/actuator/*

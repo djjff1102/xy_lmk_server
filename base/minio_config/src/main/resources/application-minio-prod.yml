@@ -1,0 +1,5 @@
+minio:
+  endpoint: http://10.144.9.9:8091
+  accessKey: minioadmin
+  secretKey: minioadmin
+  bucket: hhjw

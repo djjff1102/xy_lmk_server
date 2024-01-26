@@ -1,0 +1,1 @@
+./elasticsearch-plugin install file:/opt/elasticsearch-sql-7.12.0.0.zip

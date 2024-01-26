@@ -1,0 +1,10 @@
+spring.redis:
+  host: 172.16.9.48
+  password: redis@123~
+  port: 6379
+  database: 8
+  lettuce.pool:
+    max-active: 8
+    max-wait: -1
+    min-idle: 0
+  timeout: 5000

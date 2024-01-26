@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.wenge.tdxy</groupId>
+		<artifactId>base</artifactId>
+		<version>1.0.RELEASE</version>
+	</parent>
+	<artifactId>minio_config</artifactId>
+	<version>1.0.RELEASE</version>
+	<name>minio_config</name>
+	<description>minio_config</description>
+	<packaging>jar</packaging>
+	<dependencies>
+		<dependency>
+			<groupId>io.minio</groupId>
+			<artifactId>minio</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.wenge.tdxy</groupId>
+			<artifactId>common</artifactId>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<finalName>minio_config</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

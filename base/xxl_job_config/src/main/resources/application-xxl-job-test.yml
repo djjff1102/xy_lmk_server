@@ -1,0 +1,16 @@
+quesoar.xxl.job:
+  app-name: executor-${spring.application.name}
+  admin-addresses: http://xxl-job.common-component.svc.cluster.local:8080/xxl-job-admin
+  #  port: 12104
+  #xxl-job executor log-path
+  log-path: ${user.dir}/xxl_job
+  #xxl-job executor log-retention-days
+  log-retention-days: 3
+  token: XXL_JOB_LOGIN_IDENTITY=7b226964223a322c22757365726e616d65223a2271697368756f222c2270617373776f7264223a223733343265376538663735306135643732343536386665346133306562656238222c22726f6c65223a312c227065726d697373696f6e223a22227d
+  #xxl-job, access token
+  accessToken: 154e7881d1374600d71137aebbff2db2ad0f615cac266141669c90f29927dc09
+  #xxl-job executor registry-address: default use address to registry , otherwise use ip:port if address is null
+  #  address:
+  #xxl-job executor server-info
+  ip: ${spring.cloud.client.ip-address}
+

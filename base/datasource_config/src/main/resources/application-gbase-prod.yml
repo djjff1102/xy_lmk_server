@@ -1,0 +1,84 @@
+############################### mybatis-plus start #################################
+mybatis-plus:
+  # 启动时是否检查MyBatis XML文件是否存在
+  check-config-location: true
+  # MyBatis原生配置
+  configuration:
+    # 字段名称下划线转驼峰命名
+    map-underscore-to-camel-case: true
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl  #开启sql日志
+    database-id: gbase-8s
+  global-config.db-config:
+    # 全局默认主键类型
+    id-type: ASSIGN_ID
+    logic-delete-field: delete_flag # 全局逻辑删除的实体字段名(since 3.3.0,配置后可以忽略不配置步骤2)
+    logic-delete-value: id # 逻辑已删除值(默认为 1)
+    logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+  # mapper xml映射路径
+  mapper-locations: classpath*:mapper/**/*Mapper.xml
+################################ mybatis-plus end ##################################
+
+############################### DRUID数据源配置 start ################################
+#spring.autoconfigure:
+#  exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+spring.datasource.dynamic:
+  #设置默认的数据源或者数据源组,默认值即为master
+  primary: hhjw_shc
+  #设置严格模式,默认false不启动. 启动后在未匹配到指定数据源时候会抛出异常,不启动则使用默认数据源.
+  strict: false
+  datasource:
+    hhjw_shc:
+      url: jdbc:gbasedbt-sqli://172.1.7.30:9088/hhjw_shc:GBASEDBTSERVER=gbase30;DB_LOCALE=zh_cn.utf8;CLIENT_LOCALE=zh_cn.utf8;NEWCODESET=UTF8,UTF8,57372;
+      username: gbasedbt
+      password: GBase8s
+      driver-class-name: com.gbasedbt.jdbc.Driver
+    tdxy_org:
+      url: jdbc:gbasedbt-sqli://172.1.7.30:9088/tdxy_org:GBASEDBTSERVER=gbase30;DB_LOCALE=zh_cn.utf8;CLIENT_LOCALE=zh_cn.utf8;NEWCODESET=UTF8,UTF8,57372;
+      username: gbasedbt
+      password: GBase8s
+      driver-class-name: com.gbasedbt.jdbc.Driver
+    hhjw_zzc:
+      url: jdbc:gbasedbt-sqli://172.1.7.30:9088/hhjw_zzc:GBASEDBTSERVER=gbase30;DB_LOCALE=zh_cn.utf8;CLIENT_LOCALE=zh_cn.utf8;NEWCODESET=UTF8,UTF8,57372;
+      username: gbasedbt
+      password: GBase8s
+      driver-class-name: com.gbasedbt.jdbc.Driver
+  druid:
+    keep-alive: true
+    filters: stat
+    # 初始化连接数
+    initial-size: 5
+    # 最小空闲连接数
+    min-idle: 5
+    # 最大活跃连接数
+    max-active: 512
+    # 最大连接等待超时时间，单位是毫秒(ms)
+    max-wait: 30000
+    # 多久检测需要关闭的空闲连接，单位是毫秒
+    time-between-eviction-runs-millis: 60000
+    # 配置一个连接在池中最小生存的时间，单位是毫秒
+    min-evictable-idle-time-millis: 300000
+    # 验证数据库连接的查询语句，这个查询语句必须是至少返回一条数据的SELECT语句
+    validation-query: select count(1) from systables
+    # 建议配置为true，不影响性能，并且保证安全性。申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效。
+    test-while-idle: true
+    # 申请连接时执行validationQuery检测连接是否有效，会降低性能
+    test-on-borrow: false
+    # 归还连接时执行validationQuery检测连接是否有效，会降低性能
+    test-on-return: false
+    # 是否缓存preparedStatement，也就是PSCache。PSCache对支持游标的数据库性能提升巨大，比如说oracle。在mysql下建议关闭。
+    pool-prepared-statements: false
+    max-pool-prepared-statement-per-connection-size: 20
+############################### DRUID数据源配置 end ################################
+pagehelper:
+  #标识是哪一种数据库
+  helperDialect: com.quesoar.datasource.gbase.GBase8sHelperDialect
+  #启用合理化，如果pageNum<1会查询第一页，如果pageNum>pages会查询最后一页
+  reasonable: true
+  #为了支持startPage(Object params)方法，增加了该参数来配置参数映射，用于从对象中根据属性名取值，
+  #可以配置pageNum,pageSize,count,pageSizeZero,reasonable，不配置映射的用默认值，
+  #默认值为pageNum=pageNum;pageSize=pageSize;count=countSql;reasonable=reasonable;pageSizeZero=pageSizeZero
+  supportMethodsArguments: true
+  #支持通过 Mapper 接口参数来传递分页参数，默认值false，分页插件会从查询方法的参数值中，自动根据上面 params 配置的字段中取值，查找到合适的值时就会自动分页
+  params: count=countSql
+  #如果 pageSize=0 就会查询出全部的结果（相当于没有执行分页查询）
+  page-size-zero: true

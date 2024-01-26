@@ -1,0 +1,21 @@
+
+###
+PUT {{host}}/organization/save
+Content-Type: application/json
+
+{
+	"name": "B",
+	"pid": "1645986031295426561",
+	"code": "B",
+	"system_type": "0"
+}
+
+
+###
+GET {{host}}/organization/find
+
+###
+PUT {{host}}/test/es/save
+
+###
+GET {{host}}/test/es/find

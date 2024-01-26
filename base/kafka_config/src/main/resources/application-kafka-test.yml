@@ -1,0 +1,4 @@
+spring.kafka:
+  one.bootstrap-servers:
+    - 122.9.66.242:9092
+  group-id: group-test

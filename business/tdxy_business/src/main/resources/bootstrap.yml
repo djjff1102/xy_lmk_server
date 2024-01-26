@@ -1,0 +1,17 @@
+spring:
+  application.name: tdxy
+  profiles.include:
+    - common
+    - mysql-@profileActive@
+    - redis-@profileActive@
+    - neo4j-@profileActive@
+    - @profileActive@
+
+server:
+  port: 8081
+  servlet:
+    context-path: /xy_lmk
+user_default_password: ZGCM@2023edu
+aes_default_key: 8402AEF88EA12B4EF7A482C538744763
+
+
